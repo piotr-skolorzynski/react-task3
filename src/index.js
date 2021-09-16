@@ -3,11 +3,14 @@ import ReactDOM from 'react-dom';
 import './normalize.css';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { AppProvider } from './context';
 import App from './App';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <AppProvider>
+      <App />
+    </AppProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

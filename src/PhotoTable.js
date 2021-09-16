@@ -1,7 +1,7 @@
 import Table from "react-bootstrap/Table";
 import Photos from "./Photos";
 
-const PhotoList = ({photos}) => {
+const PhotoList = () => {
     return (
         <Table borderless variant="dark" className="table-wrapper"> 
             <thead>
@@ -11,7 +11,7 @@ const PhotoList = ({photos}) => {
                 </tr>
             </thead>
             <tbody>
-                <Photos photos={photos} />
+                <Photos />
             </tbody>
         </Table>
     );

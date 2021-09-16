@@ -1,6 +1,6 @@
-const PhotoDetails = ({id, title, thumbnailUrl}) => {
+const PhotoDetails = ({id, title, thumbnailUrl, url}) => {
     return (
-            <tr key={id}>
+            <tr>
                 <td className="photo-title">
                     {title}
                 </td>
