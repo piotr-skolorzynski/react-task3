@@ -7,9 +7,10 @@ const AppProvider = ({children}) => {
     const [photos, setPhotos] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [urlToModal, setUrlToModal] = useState('');
+    const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        //added timeout to simulate async effect
+        //added timeout to simulate async effect and see better loader
         const timeout = setTimeout(() => {
             fetch('https://jsonplaceholder.typicode.com/photos')
                 .then(res => res.json())
@@ -17,6 +18,8 @@ const AppProvider = ({children}) => {
                 .then(filteredAlbums => {
             setIsLoading(false);
             setPhotos(filteredAlbums);
+            const categories = Array.from(new Set(filteredAlbums.map(photo => photo.albumId)));
+            setCategories(categories);
         });
             return clearTimeout(timeout);
         }, 2000);
@@ -42,7 +45,8 @@ const AppProvider = ({children}) => {
                 setIsModalOpen,
                 openModal,
                 closeModal,
-                urlToModal
+                urlToModal,
+                categories
             }}>
                 {children}
             </AppContext.Provider>
