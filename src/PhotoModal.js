@@ -12,7 +12,7 @@ const PhotoModal = () => {
         }`}
         >
         <div className='modal-container'>
-            <img src={urlToModal} alt="" />
+            <img src={urlToModal} alt='details'/>
             <button className='close-modal-btn' onClick={closeModal}>
                 <FaTimes></FaTimes>
             </button>
@@ -20,5 +20,5 @@ const PhotoModal = () => {
         </div>
     );
 }
- 
+
 export default PhotoModal;

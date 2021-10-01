@@ -13,5 +13,5 @@ const PhotoDetails = ({title, thumbnailUrl, url}) => {
             </tr>
     );
 }
- 
+
 export default PhotoDetails;

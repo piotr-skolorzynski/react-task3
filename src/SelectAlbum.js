@@ -3,31 +3,19 @@ import { useGlobalContext } from "./context";
 
 const SelectAlbum = () => {
 
-    const { photos, setPhotos, categories, setIsLoading } = useGlobalContext();
+    const { photosToShow, setPhotosToShow, photos, categories } = useGlobalContext();
     const [selectedCategory, setSelectedCategory] = useState('all');
 
     const handleChange = e => {
-        setSelectedCategory(e.target.value);
-    };
+            setSelectedCategory(e.target.value);
+        };
 
     useEffect(() => {
         if (selectedCategory === 'all') {
-            fetch('https://jsonplaceholder.typicode.com/photos')
-                .then(res => res.json())
-                .then(data => data.filter(item => item.albumId <= 5))
-                .then(filteredAlbums => {
-            setIsLoading(false);
-            setPhotos(filteredAlbums);
-            })            
+            setPhotosToShow(photos);           
         } else {
-            fetch('https://jsonplaceholder.typicode.com/photos')
-                .then(res => res.json())
-                .then(data => data.filter(item => item.albumId <= 5))
-                .then(filteredAlbums => {
-            setIsLoading(false);
-            const filteredPhotos = filteredAlbums.filter(photo => photo.albumId === parseInt(selectedCategory));
-            setPhotos(filteredPhotos)
-            })
+            const filteredPhotos = photos.filter(photo => photo.albumId === parseInt(selectedCategory));
+            setPhotosToShow(filteredPhotos)
         }
     }, [selectedCategory]);
 
@@ -38,7 +26,7 @@ const SelectAlbum = () => {
         </label>
         <select onChange={handleChange}>
             <option key='0' value="all">Choose All</option>
-            {photos && 
+            {photosToShow && 
                 categories.map(category => {
                     return <option key={category} value={category}>{category}</option>
                 })
